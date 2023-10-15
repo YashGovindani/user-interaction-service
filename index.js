@@ -1,6 +1,7 @@
 var express = require('express');
 var config = require('./config');
 var routes = require('./routes');
+var axios = require('axios');
 
 var init = async () => {
     var app = express();

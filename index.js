@@ -17,6 +17,29 @@ var init = async () => {
         next();
     });
 
+    app.use('/user-interaction', async (req, res, next) => {
+        try {
+            var userResp = await axios.post('http://localhost:9088/user/get', {
+                "what": [],
+                "by": {
+                    "id": [req.body.userId]
+                }
+            });
+            if(userResp.data.data.length <= 0) {
+                res.status(403);
+                return res.sendStatus(403);
+            }
+            next();
+        } catch (err) {
+            console.log(err);
+            res.status(500);
+            return res.json({
+                status: "failed",
+                message: "something went wrong"
+            });
+        }
+    });
+
     app.use('/user-interaction', routes);
 
     app.listen(port, () => {

@@ -42,6 +42,8 @@ var init = async () => {
 
     app.use('/user-interaction', routes);
 
+    if(!await db.init()) return;
+
     app.listen(port, () => {
         console.log("App is listening on port : " + port)
     });

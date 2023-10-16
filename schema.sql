@@ -1,4 +1,4 @@
-CREATE TABLE user_interaction (
+CREATE TABLE IF NOT EXISTS user_interaction (
     id uuid DEFAULT gen_random_uuid (),
     user_id uuid NOT NULL,
     content_id uuid NOT NULL,
